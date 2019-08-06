@@ -9,6 +9,7 @@ public class Board extends GridPane {
     public final int BOARDSIZE = 3;
     private Character player;
     private AI aiPlayer;
+    private int moveCount;
     public Board(Character player){
         super();
         board = new ArrayList<ArrayList<Cell>>();
@@ -18,6 +19,7 @@ public class Board extends GridPane {
         this.player = player;
         Character aiSymbol = player == 'X'?'O':'X';
         aiPlayer = new AI(aiSymbol);
+        moveCount = 0;
     }
     public int evaluateGameState(){
         for (int x = 0;x < BOARDSIZE;x++){//checks for row win
@@ -106,15 +108,21 @@ public class Board extends GridPane {
         return aiBoard.get(y).get(x);
     }
     private void handleInput(int x,int y){
+
         if(isMovesLeft() && evaluateGameState() == 0) {
             getCellAtPosition(x, y).paint(true);
+            moveCount++;
             setAICellAtPos(x, y, 'X');
-            Move aiMove = aiPlayer.getBestMove(this);
-            getCellAtPosition(aiMove.getX(), aiMove.getY()).paint(false);
-            setAICellAtPos(aiMove.getX(), aiMove.getY(), 'O');
+            if(moveCount < 9) {
+                Move aiMove = aiPlayer.getBestMove(this);
+                getCellAtPosition(aiMove.getX(), aiMove.getY()).paint(false);
+                setAICellAtPos(aiMove.getX(), aiMove.getY(), 'O');
+                moveCount++;
+            }
         }
     }
     public void reset(){
+        moveCount = 0;
         for (int y = 0;y < BOARDSIZE;y++){
             for (int x = 0;x < BOARDSIZE;x++){
                 setAICellAtPos(x,y,'.');
