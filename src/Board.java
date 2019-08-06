@@ -18,7 +18,6 @@ public class Board extends GridPane {
         this.player = player;
         Character aiSymbol = player == 'X'?'O':'X';
         aiPlayer = new AI(aiSymbol);
-        System.out.println(aiSymbol+" "+player);
     }
     public int evaluateGameState(){
         for (int x = 0;x < BOARDSIZE;x++){//checks for row win
