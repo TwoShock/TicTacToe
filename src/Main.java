@@ -9,7 +9,7 @@ public class Main extends Application {
     private Scene mainScene;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        board =  new Board();
+        board =  new Board('X');
         mainLayout = new BorderPane();
         mainLayout.setCenter(board);
         mainScene = new Scene(mainLayout);
