@@ -115,4 +115,12 @@ public class Board extends GridPane {
             setAICellAtPos(aiMove.getX(), aiMove.getY(), 'O');
         }
     }
+    public void reset(){
+        for (int y = 0;y < BOARDSIZE;y++){
+            for (int x = 0;x < BOARDSIZE;x++){
+                setAICellAtPos(x,y,'.');
+                getCellAtPosition(x,y).reset();
+            }
+        }
+    }
 }

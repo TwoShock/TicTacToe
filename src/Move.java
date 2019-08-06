@@ -1,8 +1,7 @@
 public class Move {
     private int x;
     private int y;
-    private int score;
-    public Move(){
+    public Move(){//simple move class
         x = -1;
         y = -1;
     }

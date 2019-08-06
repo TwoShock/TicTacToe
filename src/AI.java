@@ -30,7 +30,7 @@ public class AI {
                     }
                 }
             }
-            return bestMove;
+            return bestMove-depth;
         }
         else{
             int bestMove = Integer.MAX_VALUE;
@@ -43,7 +43,7 @@ public class AI {
                     }
                 }
             }
-            return bestMove;
+            return bestMove+depth;
         }
     }
     Move getBestMove(Board board){
